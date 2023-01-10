@@ -1,0 +1,35 @@
+body {
+  background-color: #f8f8f8;
+}
+
+.main-title {
+  display: flex;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.main-counter {
+  display: flex;
+  justify-content: center;
+}
+.main-counter-single {
+  margin-right: 10px;
+}
+
+.main-counter-single-two {
+  margin-left: 10px;
+}
+
+.questions {
+  cursor: pointer;
+}
+
+.correctAnswer {
+  color: green;
+  cursor: default;
+}
+
+.incorrectAnswer {
+  color: red;
+  cursor: default;
+}

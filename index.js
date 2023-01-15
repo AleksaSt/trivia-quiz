@@ -11,43 +11,37 @@ let correctCounter = 0;
 let incorrectCounter = 0;
 
 function fetchData() {
-  const selectEl = document.querySelector(".select");
+  const selectEl = document.querySelector(".select-topic");
   const selectOption = selectEl.value;
   let topic = "";
 
   switch (selectOption) {
     case "1":
       topic = "geography";
-      // console.log("Geography");
       break;
     case "2":
       topic = "history";
-      // console.log("History");
       break;
     case "3":
       topic = "film_and_tv";
-      // console.log("Film & TV");
       break;
     case "4":
       topic = "music";
-      // console.log("Music");
       break;
     case "5":
       topic = "science";
-      // console.log("Science");
       break;
     case "6":
       topic = "general_knowledge";
-      // console.log("General Knowledge");
       break;
     default:
       console.log("Please choose a topic :)");
   }
   const difficulty = selectDifficulty();
-  const api = `https://the-trivia-api.com/api/questions?categories=${topic}&limit=5&difficulty=${difficulty}`;
+  const numberOfQuestions = selectNumberOfQuestions();
+  const api = `https://the-trivia-api.com/api/questions?categories=${topic}&limit=${numberOfQuestions}&difficulty=${difficulty}`;
 
   console.log(api);
-  console.log(topic);
   fetch(api)
     .then((response) => {
       return response.json();
@@ -63,33 +57,47 @@ function fetchData() {
 button.addEventListener("click", () => {
   fetchData();
 });
-buttonTwo.addEventListener("click", () => {
-  selectDifficulty();
-});
 
 function selectDifficulty() {
-  const selectElTwo = document.querySelector(".select-two");
-  const selectOptionTwo = selectElTwo.value;
-  console.log(selectOptionTwo);
+  const selectDiff = document.querySelector(".select-difficulty");
+  const selectOptionTwo = selectDiff.value;
   let difficulty = "";
 
   switch (selectOptionTwo) {
     case "11":
       difficulty = "easy";
-      console.log("easy");
       break;
     case "22":
       difficulty = "medium";
-      console.log("medium");
       break;
     case "33":
       difficulty = "hard";
-      console.log("hard");
       break;
     default:
       console.log("Please choose a difficulty :)");
   }
   return difficulty;
+}
+
+function selectNumberOfQuestions() {
+  const selectNumber = document.querySelector(".select-number");
+  const selectOptionThree = selectNumber.value;
+  let number = "";
+
+  switch (selectOptionThree) {
+    case "1":
+      number = "5";
+      break;
+    case "2":
+      number = "10";
+      break;
+    case "3":
+      number = "20";
+      break;
+    default:
+      console.log("Please choose a difficulty :)");
+  }
+  return number;
 }
 
 function quizData(data) {
@@ -128,7 +136,7 @@ function disableAnswers(event) {
   });
 
   let total = incorrectCounter + correctCounter;
-  totalSpan.innerHTML = `Total: ${total}`;
+  totalSpan.innerHTML = `Total Score: ${total}`;
 }
 
 function handleIncorrectAnswer(event) {
